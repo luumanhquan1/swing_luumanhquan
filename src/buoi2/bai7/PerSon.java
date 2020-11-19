@@ -3,43 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package buoi2.bai3;
-
-import java.util.Scanner;
+package buoi2.bai7;
 
 /**
  *
  * @author ASUS TUF
  */
 public class PerSon {
-    
-    private String hoten;
+     private String hoten;
     private String ngaysinh;
     private String diachi;
     private String gioitinh;
-    public void nhap(){
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Nhập Họ Tên:");
-        hoten=sc.nextLine();
-        System.out.println("nhập ngày sinh:");
-        ngaysinh=sc.nextLine();
-        System.out.println("địa chỉ:");
-        diachi=sc.nextLine();
-        System.out.println("Giới Tính");
-        gioitinh=sc.nextLine();
-    }
 
+    public PerSon(String hoten, String ngaysinh, String diachi, String gioitinh) {
+        this.hoten = hoten;
+        this.ngaysinh = ngaysinh;
+        this.diachi = diachi;
+        this.gioitinh = gioitinh;
+    }
+public double luongthuclinh(){
+    return 0;
+}
+    @Override
+    public String toString() {
+        return  "hoten=" + hoten + ", ngaysinh=" + ngaysinh + ", diachi=" + diachi + ", gioitinh=" + gioitinh +'}';
+    }
+public void xuat(){
+    System.out.println(toString());
+}
     public PerSon() {
     }
 
-    @Override
-    public String toString() {
-        return hoten + "-" + ngaysinh + "-" + diachi + "-" + gioitinh;
-    }
-
-    public String xuat(){
-      return toString();
-    }
     public String getHoten() {
         return hoten;
     }
@@ -71,6 +65,5 @@ public class PerSon {
     public void setGioitinh(String gioitinh) {
         this.gioitinh = gioitinh;
     }
-    
     
 }

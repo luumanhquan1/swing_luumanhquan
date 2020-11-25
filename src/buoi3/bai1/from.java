@@ -49,6 +49,7 @@ public class from extends javax.swing.JFrame {
         txtdonvi.setEnabled(false);
         txtluong.setEnabled(false);
         lbloihoten.setText(" ");
+        lbloiluong.setText(" ");
     }
 
     /**
@@ -85,6 +86,7 @@ public class from extends javax.swing.JFrame {
         lbloimasv = new javax.swing.JLabel();
         lbloihoten = new javax.swing.JLabel();
         lbloihocphi = new javax.swing.JLabel();
+        lbloiluong = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -202,6 +204,8 @@ public class from extends javax.swing.JFrame {
 
         lbloihocphi.setForeground(new java.awt.Color(255, 51, 51));
 
+        lbloiluong.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -222,14 +226,16 @@ public class from extends javax.swing.JFrame {
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txthocphi, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtluong, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel6)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtdonvi, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtdonvi, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtluong, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbloiluong, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(43, 43, 43)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -308,7 +314,9 @@ public class from extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(36, 36, 36)
+                .addGap(2, 2, 2)
+                .addComponent(lbloiluong)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txthocphi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -324,11 +332,6 @@ public class from extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    
-    
-    
     boolean kiemTraRong() {
         boolean kiemtrakitu;
         if (txtMasv.getText().equals("") == false) {
@@ -355,7 +358,7 @@ public class from extends javax.swing.JFrame {
             String hoten = txtHoten.getText();
             for (i = 0; i < hoten.length(); i++) {
                 char ch = hoten.charAt(i);
-                if ((ch >= 'A' && ch <= 'Z')||ch==' '||(ch >= 'a' && ch <= 'z')) {
+                if ((ch >= 'A' && ch <= 'Z') || ch == ' ' || (ch >= 'a' && ch <= 'z')) {
                 } else {
                     message += "định dạng sai";
                     kiemtra++;
@@ -444,7 +447,9 @@ public class from extends javax.swing.JFrame {
         String gioiTinh = cbgioitinh.getSelectedItem().toString();
         if (rdsvhttt.isSelected()) {
             String hocphi = txthocphi.getText();
+            int kiemtrahocphi = 0;
             for (int i = 0; i < hocphi.length(); i++) {
+                kiemtrahocphi++;
                 char ch = hocphi.charAt(i);
                 if (ch >= '0' && ch <= '9' || ch == '.' || ch == ',') {
                 } else {
@@ -452,16 +457,26 @@ public class from extends javax.swing.JFrame {
                     return false;
                 }
             }
+            if (kiemtrahocphi <= 5) {
+                message += "tiền tối thiểu là 10.000";
+                return false;
+            }
         }
-        if(rdsvmm.isSelected()){
+        if (rdsvmm.isSelected()) {
             String luong = txtluong.getText();
+            int kiemtraluong = 0;
             for (int i = 0; i < luong.length(); i++) {
+                kiemtraluong++;
                 char ch = luong.charAt(i);
                 if (ch >= '0' && ch <= '9' || ch == '.' || ch == ',') {
                 } else {
                     message += "đinh dang sau";
                     return false;
                 }
+            }
+            if (kiemtraluong <= 5) {
+                message += "tiền tối thiểu là 10.000";
+                return false;
             }
         }
         return true;
@@ -491,44 +506,43 @@ public class from extends javax.swing.JFrame {
         } catch (NumberFormatException numberFormatException) {
         }
         String gioiTinh = cbgioitinh.getSelectedItem().toString();
-        if (rdsvhttt.isSelected()) {     
-                String hocphi = txthocphi.getText();     
+        if (rdsvhttt.isSelected()) {
+            String hocphi = txthocphi.getText();
             hopLe = kiemTraRong();
             if (hopLe) {
                 SinhVienHTTT svhttt = new SinhVienHTTT(hocphi, masv, hoten, ngaySinh, gioiTinh, diem);
                 dsSinhVien.add(svhttt);
+                int i = 0;
+                for (SinhVien tmp : dsSinhVien) {
+                    if (dsSinhVien.get(i) instanceof SinhVienHTTT) {
+                        dsSinhVien.get(i).xuat();
+                    }
+                    i++;
+                }
             } else {
                 JOptionPane.showMessageDialog(this, message);
                 message = "";
             }
 
-            int i = 0;
-            for (SinhVien tmp : dsSinhVien) {
-                if (dsSinhVien.get(i) instanceof SinhVienHTTT) {
-                    dsSinhVien.get(i).xuat();
-                }
-                i++;
-            }
         } else if (rdsvmm.isSelected()) {
             String donvi = txtdonvi.getText();
             String luong = txtluong.getText();
             hopLe = kiemTraRong();
-            if(hopLe)
-            {
-            SinhVienMatMa svmm = new SinhVienMatMa(donvi, luong, masv, hoten, ngaySinh, gioiTinh, diem);
-            dsSinhVien.add(svmm);
-            }
-            else{
-            JOptionPane.showMessageDialog(this, message);
-            message="";
-            }
-            int i = 0;
-            for (SinhVien tmp : dsSinhVien) {
-                if (dsSinhVien.get(i) instanceof SinhVienMatMa) {
-                    dsSinhVien.get(i).xuat();
+            if (hopLe) {
+                SinhVienMatMa svmm = new SinhVienMatMa(donvi, luong, masv, hoten, ngaySinh, gioiTinh, diem);
+                dsSinhVien.add(svmm);
+                int i = 0;
+                for (SinhVien tmp : dsSinhVien) {
+                    if (dsSinhVien.get(i) instanceof SinhVienMatMa) {
+                        dsSinhVien.get(i).xuat();
+                    }
+                    i++;
                 }
-                i++;
+            } else {
+                JOptionPane.showMessageDialog(this, message);
+                message = "";
             }
+
         }
     }//GEN-LAST:event_btnthemActionPerformed
 
@@ -580,7 +594,7 @@ public class from extends javax.swing.JFrame {
                 String kiemtra = "\\w+";
                 String masv = txtMasv.getText();
                 flag = masv.matches(kiemtra);
-                if (masv.contains("AT")||masv.contains("at")) {
+                if (masv.contains("AT") || masv.contains("at")) {
                     lbloimasv.setText(" ");
                     if (flag == false) {
                         lbloimasv.setText("viết liền,Không dấu,ký tự(AT******)");
@@ -590,7 +604,7 @@ public class from extends javax.swing.JFrame {
                 } else {
                     lbloimasv.setText("viết liền,Không dấu,ký tự(AT******)");
                 }
-                
+
             } catch (Exception e) {
             }
         }
@@ -605,7 +619,7 @@ public class from extends javax.swing.JFrame {
             int i = 0;
             for (i = 0; i < hoten.length(); i++) {
                 char ch = hoten.charAt(i);
-                if ((ch >= 'A' && ch <= 'Z')||ch==' '||(ch >= 'a' && ch <= 'z')) {
+                if ((ch >= 'A' && ch <= 'Z') || ch == ' ' || (ch >= 'a' && ch <= 'z')) {
                     lbloihoten.setText(" ");
                 } else {
                     lbloihoten.setText("không ký tự,không dấu");
@@ -638,28 +652,46 @@ public class from extends javax.swing.JFrame {
     }//GEN-LAST:event_txtdonviFocusLost
 
     private void txtluongFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtluongFocusLost
-   try {
-             long luong = Long.valueOf(txtluong.getText());
+        try {
+            long luong = Long.valueOf(txtluong.getText());
             Locale localeEn = new Locale("vn", "VN");
             NumberFormat en = NumberFormat.getInstance(localeEn);
             String tiente = en.format(luong);
             dinhdangtien t = new dinhdangtien(tiente);
             txtluong.setText(t.dinhdangtien());
+            int kiemtra = 0;
+            for (int i = 0; i < t.dinhdangtien().length(); i++) {
+                kiemtra++;
+            }
+            if (kiemtra <= 5) {
+                lbloiluong.setText("tối thiểu 10.000");
+            } else {
+                lbloiluong.setText(" ");
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txtluongFocusLost
 
     private void txthocphiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txthocphiFocusLost
         try {
-             long hocphi = Long.valueOf(txthocphi.getText());
+            long hocphi = Long.valueOf(txthocphi.getText());
             Locale localeEn = new Locale("vn", "VN");
             NumberFormat en = NumberFormat.getInstance(localeEn);
             String tiente = en.format(hocphi);
             dinhdangtien t = new dinhdangtien(tiente);
+            int kiemtra = 0;
             txthocphi.setText(t.dinhdangtien());
+            for (int i = 0; i < t.dinhdangtien().length(); i++) {
+                kiemtra++;
+            }
+            if (kiemtra <= 5) {
+                lbloihocphi.setText("tối thiểu 10.000");
+            } else {
+                lbloihocphi.setText(" ");
+            }
         } catch (Exception e) {
         }
-           
+
     }//GEN-LAST:event_txthocphiFocusLost
 
     /**
@@ -716,6 +748,7 @@ public class from extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lbloihocphi;
     private javax.swing.JLabel lbloihoten;
+    private javax.swing.JLabel lbloiluong;
     private javax.swing.JLabel lbloimasv;
     private javax.swing.JRadioButton rdsvhttt;
     private javax.swing.JRadioButton rdsvmm;

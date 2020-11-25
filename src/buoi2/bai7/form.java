@@ -6,7 +6,9 @@
 package buoi2.bai7;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -216,14 +218,21 @@ public class form extends javax.swing.JFrame {
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
        String hoten=txthoten.getText();
        double thamlien=Double.valueOf(txtthamlien.getText());
-       String ngaysinh=txtngaysinh.getText();
+       
        String diachi=txtdiachi.getText();
        String gioitinh=cbgioitinh.getSelectedItem().toString();
        String phongban=cbphongban.getSelectedItem().toString();
        double hesoluong=Double.valueOf(txthesoluong.getText());
        double luongcoban=Double.valueOf(txtluongcoban.getText());
-       
-       NhanVien nv=new NhanVien(phongban, hesoluong, thamlien, luongcoban, hoten, ngaysinh, diachi, gioitinh);
+        Date date=null;
+        SimpleDateFormat sdf=new SimpleDateFormat("dd/mm/yyyy");
+         
+        try {
+            date=sdf.parse(txtngaysinh.getText());
+           
+        } catch (Exception e) {
+        }
+       NhanVien nv=new NhanVien(phongban, hesoluong, thamlien, luongcoban, hoten, date, diachi, gioitinh);
        dsNhanVien.add(nv);
         System.out.println(dsNhanVien);
        

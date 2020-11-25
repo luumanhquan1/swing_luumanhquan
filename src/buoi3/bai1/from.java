@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package buoi2.bai1;
+package buoi3.bai1;
 
+import buoi3.bai1.batloi.dinhdangdiem;
+import buoi2.bai1.*;
+import buoi3.bai1.batloi.dinhdangtien;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.awt.Color;
 import java.awt.Component;
@@ -12,12 +15,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,13 +35,20 @@ public class from extends javax.swing.JFrame {
     /**
      * Creates new form from
      */
-    Date date=null;
-    ArrayList<SinhVien> dsSinhVien=new ArrayList<>();
-   
-    SimpleDateFormat sdf=new SimpleDateFormat("dd/mm/yyyy");
+    int i1 = 1, i2 = 1;
+
+    String message = "";
+    Date date = null;
+    ArrayList<SinhVien> dsSinhVien = new ArrayList<>();
+
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+
     public from() {
         initComponents();
         this.setLocationRelativeTo(null);
+        txtdonvi.setEnabled(false);
+        txtluong.setEnabled(false);
+        lbloihoten.setText(" ");
     }
 
     /**
@@ -69,6 +82,9 @@ public class from extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         btnthem = new javax.swing.JButton();
         btnluu = new javax.swing.JButton();
+        lbloimasv = new javax.swing.JLabel();
+        lbloihoten = new javax.swing.JLabel();
+        lbloihocphi = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,6 +161,7 @@ public class from extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(rdsvhttt);
+        rdsvhttt.setSelected(true);
         rdsvhttt.setText("Sinh Viên HTTT");
         rdsvhttt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,6 +193,15 @@ public class from extends javax.swing.JFrame {
             }
         });
 
+        lbloimasv.setBackground(new java.awt.Color(255, 51, 51));
+        lbloimasv.setForeground(new java.awt.Color(255, 51, 51));
+        lbloimasv.setToolTipText("");
+
+        lbloihoten.setBackground(new java.awt.Color(255, 51, 51));
+        lbloihoten.setForeground(new java.awt.Color(255, 51, 51));
+
+        lbloihocphi.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -184,12 +210,7 @@ public class from extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(btnthem)
-                        .addGap(84, 84, 84)
-                        .addComponent(btnluu))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
+                        .addGap(62, 62, 62)
                         .addComponent(rdsvhttt)
                         .addGap(18, 18, 18)
                         .addComponent(rdsvmm))
@@ -204,30 +225,14 @@ public class from extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtluong, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtluong, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtdonvi, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(43, 43, 43)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel9)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel6))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(21, 21, 21)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(txtdiem, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(0, 0, Short.MAX_VALUE))
-                                                .addComponent(cbgioitinh, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtdonvi, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtMasv, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4)
@@ -235,60 +240,227 @@ public class from extends javax.swing.JFrame {
                                     .addGap(60, 60, 60)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtNgaySinh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtHoten, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                                        .addComponent(txtHoten, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbloihoten)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(21, 21, 21)
+                                    .addComponent(txtdiem, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addGap(67, 67, 67)
+                                    .addComponent(cbgioitinh, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lbloimasv, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txtMasv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(67, 67, 67)
+                            .addComponent(btnthem)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnluu)
+                            .addGap(12, 12, 12)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(lbloihocphi, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtMasv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbloimasv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtHoten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(lbloihoten)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbgioitinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtdiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdsvhttt)
                     .addComponent(rdsvmm))
-                .addGap(6, 6, 6)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtdonvi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txthocphi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbloihocphi)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnluu)
-                    .addComponent(btnthem))
-                .addContainerGap())
+                    .addComponent(btnthem)
+                    .addComponent(btnluu))
+                .addGap(142, 142, 142))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    boolean kiemTraRong() {
+        boolean kiemtrakitu;
+        if (txtMasv.getText().equals("") == false) {
+            try {
+                String kiemtra = "\\w+";
+                String masv = txtMasv.getText();
+                kiemtrakitu = masv.matches(kiemtra);
+                if (masv.contains("AT")) {
+                    if (kiemtrakitu == false) {
+                        message += "lỗi định dạng";
+                        return false;
+                    }
+                } else {
+                    message += "lỗi định dạng";
+                    return false;
+                }
+
+            } catch (Exception e) {
+            }
+        }
+        if (txtHoten.getText().equals("") == false) {
+            int i = 0;
+            int kiemtra = 0;
+            String hoten = txtHoten.getText();
+            for (i = 0; i < hoten.length(); i++) {
+                char ch = hoten.charAt(i);
+                if ((ch >= 'A' && ch <= 'Z')) {
+                } else {
+                    message += "định dạng sai";
+                    kiemtra++;
+                    break;
+                }
+            }
+            if (kiemtra > 0) {
+                return false;
+            }
+            if (i <= 5) {
+                message += "yêu cầu nhập đủ họ và Tên";
+                return false;
+            }
+        }
+        if (txtMasv.getText().isEmpty() || txtHoten.getText().isEmpty() || txtNgaySinh.getText().isEmpty()
+                || txtdiem.getText().isEmpty()) {
+            message += "Các trường không được rỗng\n";
+            return false;
+        }
+        if (rdsvhttt.isSelected() && rdsvmm.isSelected()) {
+            message += "Các trường không được rỗng\n";
+            return false;
+        }
+        if (rdsvhttt.isSelected() && txthocphi.getText().isEmpty()) {
+            message += "Các trường không được rỗng\n";
+            return false;
+        }
+        if (rdsvmm.isSelected()) {
+            if (txtluong.getText().isEmpty() || txtdonvi.getText().isEmpty()) {
+                message += "Các trường không được rỗng\n";
+                return false;
+            }
+        }
+        Date ngaySinh = null;
+        sdf.setLenient(false);
+        try {
+            ngaySinh = sdf.parse(txtNgaySinh.getText());
+        } catch (ParseException ex) {
+            message += ("Lỗi ngày sinh");
+            return false;
+        }
+        double diem = 0;
+        try {
+            diem = Double.valueOf(txtdiem.getText());
+            if (diem > 10) {
+                message += "uiii!điểm không vượt quá 10 được đâu";
+                return false;
+            } else if (diem < 0) {
+                message += "uiii! 0 là bé nhất rồi";
+                return false;
+            }
+        } catch (NumberFormatException numberFormatException) {
+            String[] chuoi = new String[5];
+            String w = txtdiem.getText();
+            if (diem == 0) {
+                message += "điểm trung bình phải là một số";
+                return false;
+            }
+            for (int i = 0; i < w.length(); i++) {
+                char kiemtra = w.charAt(i);
+                if (kiemtra == ',') {
+                    chuoi = w.split(",");
+                    if (chuoi[0].equals("10")) {
+                        if (Double.valueOf(chuoi[1]) > 0) {
+                            message += "uii!điểm không vượt quá 10 nhé";
+                            return false;
+                        }
+                    } else if (Double.valueOf(chuoi[0]) < 0) {
+                        message += "uiii! 0 là bé nhất rồi!";
+                        return false;
+                    }
+                } else if (kiemtra == '.') {
+                    chuoi = w.split(".");
+                    if (chuoi[0].equals("10")) {
+                        if (Double.valueOf(chuoi[1]) > 0) {
+                            message += "uii!điểm không vượt quá 10 nhé";
+                            return false;
+                        }
+                    } else if (Double.valueOf(chuoi[0]) < 0) {
+                        message += "uiii! 0 là bé nhất rồi!";
+                        return false;
+                    }
+                }
+            }
+        }
+        String gioiTinh = cbgioitinh.getSelectedItem().toString();
+        if (rdsvhttt.isSelected()) {
+            String hocphi = txthocphi.getText();
+            for (int i = 0; i < hocphi.length(); i++) {
+                char ch = hocphi.charAt(i);
+                if (ch >= '0' && ch <= '9' || ch == '.' || ch == ',') {
+                } else {
+                    message += "đinh dang sau";
+                    return false;
+                }
+            }
+        }
+        if(rdsvmm.isSelected()){
+            String luong = txtluong.getText();
+            for (int i = 0; i < luong.length(); i++) {
+                char ch = luong.charAt(i);
+                if (ch >= '0' && ch <= '9' || ch == '.' || ch == ',') {
+                } else {
+                    message += "đinh dang sau";
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     private void txtdonviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdonviActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtdonviActionPerformed
@@ -298,115 +470,192 @@ public class from extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMasvActionPerformed
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
-       
-       double diem = 0;
-        String message = "";
+
         boolean hopLe = true;
-        if (txtdiem.getText().isEmpty()) {
-            hopLe = false;
-            message = "Điểm không được bỏ trống\n";
+        String masv = txtMasv.getText();
+        String hoten = txtHoten.getText();
+        Date ngaySinh = null;
+        sdf.setLenient(false);
+        try {
+            ngaySinh = sdf.parse(txtNgaySinh.getText());
+        } catch (ParseException ex) {
         }
+        double diem = 0;
         try {
             diem = Double.valueOf(txtdiem.getText());
         } catch (NumberFormatException numberFormatException) {
-            message += "Điểm phải là 1 số\n";
-            hopLe = false;
         }
-        if (hopLe) {
-            System.out.println("diem" + diem);
-        } else {
+        String gioiTinh = cbgioitinh.getSelectedItem().toString();
+        if (rdsvhttt.isSelected()) {     
+                String hocphi = txthocphi.getText();     
+            hopLe = kiemTraRong();
+            if (hopLe) {
+                SinhVienHTTT svhttt = new SinhVienHTTT(hocphi, masv, hoten, ngaySinh, gioiTinh, diem);
+                dsSinhVien.add(svhttt);
+            } else {
+                JOptionPane.showMessageDialog(this, message);
+                message = "";
+            }
+
+            int i = 0;
+            for (SinhVien tmp : dsSinhVien) {
+                if (dsSinhVien.get(i) instanceof SinhVienHTTT) {
+                    dsSinhVien.get(i).xuat();
+                }
+                i++;
+            }
+        } else if (rdsvmm.isSelected()) {
+            String donvi = txtdonvi.getText();
+            String luong = txtluong.getText();
+            hopLe = kiemTraRong();
+            if(hopLe)
+            {
+            SinhVienMatMa svmm = new SinhVienMatMa(donvi, luong, masv, hoten, ngaySinh, gioiTinh, diem);
+            dsSinhVien.add(svmm);
+            }
+            else{
             JOptionPane.showMessageDialog(this, message);
+            message="";
+            }
+            int i = 0;
+            for (SinhVien tmp : dsSinhVien) {
+                if (dsSinhVien.get(i) instanceof SinhVienMatMa) {
+                    dsSinhVien.get(i).xuat();
+                }
+                i++;
+            }
         }
     }//GEN-LAST:event_btnthemActionPerformed
 
     private void rdsvhtttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdsvhtttActionPerformed
-       txtdonvi.setEnabled(false);
-       txtluong.setEnabled(false);
-          txthocphi.setEnabled(true);
+        txtdonvi.setEnabled(false);
+        txtluong.setEnabled(false);
+        txthocphi.setEnabled(true);
     }//GEN-LAST:event_rdsvhtttActionPerformed
 
     private void rdsvmmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdsvmmActionPerformed
-       txthocphi.setEnabled(false);
+        txthocphi.setEnabled(false);
         txtdonvi.setEnabled(true);
-       txtluong.setEnabled(true);
+        txtluong.setEnabled(true);
     }//GEN-LAST:event_rdsvmmActionPerformed
 
     private void btnluuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnluuActionPerformed
-       if(rdsvhttt.isSelected()){
-        try (PrintWriter pw=new PrintWriter(new File("svat.dat"))){
-               int i=0;
-       for(SinhVien tmp:dsSinhVien){
-           if(dsSinhVien.get(i) instanceof SinhVienHTTT){
-         pw.println(tmp.toString());
-           }
-           i++;
-       }
-        } catch (Exception e) {
+        if (rdsvhttt.isSelected()) {
+            try (PrintWriter pw = new PrintWriter(new File("svat.dat"))) {
+                int i = 0;
+                for (SinhVien tmp : dsSinhVien) {
+                    if (dsSinhVien.get(i) instanceof SinhVienHTTT) {
+                        pw.println(tmp.toString());
+                    }
+                    i++;
+                }
+            } catch (Exception e) {
+            }
+        } else if (rdsvmm.isSelected()) {
+            try (PrintWriter pw = new PrintWriter(new File("svmm.dat"))) {
+                int i = 0;
+                for (SinhVien tmp : dsSinhVien) {
+                    if (dsSinhVien.get(i) instanceof SinhVienMatMa) {
+                        pw.println(tmp.toString());
+                    }
+                    i++;
+                }
+            } catch (Exception e) {
+            }
         }
-       }
-       else if(rdsvmm.isSelected()){
-           try (PrintWriter pw=new PrintWriter(new File("svmm.dat"))){
-               int i=0;
-       for(SinhVien tmp:dsSinhVien){
-           if(dsSinhVien.get(i) instanceof SinhVienMatMa){
-         pw.println(tmp.toString());
-           }
-           i++;
-       }
-        } catch (Exception e) {
-        }
-       }
-       StringBuilder sb=new StringBuilder();
-       sb.append("đã lưu Thành Công");
-       JOptionPane.showMessageDialog(this, sb.toString(),"Thông Báo",JOptionPane.OK_CANCEL_OPTION);
+        StringBuilder sb = new StringBuilder();
+        sb.append("đã lưu Thành Công");
+        JOptionPane.showMessageDialog(this, sb.toString(), "Thông Báo", JOptionPane.OK_CANCEL_OPTION);
     }//GEN-LAST:event_btnluuActionPerformed
 
     private void txtMasvFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMasvFocusLost
-       String Masv=txtMasv.getText();
-       if(Masv.equals("")){
-           JOptionPane.showMessageDialog(rootPane,"Ma Sinh Viên không được để trống");
-       }
+        boolean flag = true;
+        if (txtMasv.getText().equals("") == false) {
+            try {
+                String kiemtra = "\\w+";
+                String masv = txtMasv.getText();
+                flag = masv.matches(kiemtra);
+                if (masv.contains("AT")) {
+                    lbloimasv.setText(" ");
+                    if (flag == false) {
+                        lbloimasv.setText("viết liền,Không dấu,ký tự(AT******)");
+                    } else {
+                        lbloimasv.setText(" ");
+                    }
+                } else {
+                    lbloimasv.setText("viết liền,Không dấu,ký tự(AT******)");
+                }
+
+            } catch (Exception e) {
+            }
+        }
+        if (txtMasv.getText().equals("")) {
+            lbloimasv.setText(" ");
+        }
     }//GEN-LAST:event_txtMasvFocusLost
 
     private void txtHotenFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHotenFocusLost
-       String Hoten=txtHoten.getText();
-       if(Hoten.equals("")){
-           JOptionPane.showMessageDialog(rootPane,"Họ tên không được để trống");
-       }
+        if (txtHoten.getText().equals("") == false) {
+            String hoten = txtHoten.getText();
+            int i = 0;
+
+            for (i = 0; i < hoten.length(); i++) {
+                char ch = hoten.charAt(i);
+                if ((ch >= 'A' && ch <= 'Z')) {
+                    lbloihoten.setText(" ");
+                } else {
+                    lbloihoten.setText("viết hoa,liền,không ký tự");
+                    break;
+                }
+            }
+        }
+        if (txtHoten.getText().equals("")) {
+            lbloihoten.setText(" ");
+        }
     }//GEN-LAST:event_txtHotenFocusLost
 
     private void txtNgaySinhFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNgaySinhFocusLost
-        String Ngaysinh=txtNgaySinh.getText();
-       if(Ngaysinh.equals("")){
-           JOptionPane.showMessageDialog(rootPane,"ngày sinh không được để trống");
-       }
+
     }//GEN-LAST:event_txtNgaySinhFocusLost
 
     private void txtdiemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtdiemFocusLost
-      
-     
-       }
+        try {
+            String Diem = txtdiem.getText();
+            dinhdangdiem t = new dinhdangdiem(Diem);
+            txtdiem.setText(t.dinhdang());
+        } catch (Exception e) {
+
+        }
+
     }//GEN-LAST:event_txtdiemFocusLost
 
     private void txtdonviFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtdonviFocusLost
-        String donvi=txtdonvi.getText();
-       if(donvi.equals("")){
-           JOptionPane.showMessageDialog(rootPane,"Đơn vị không được để trống");
-       }
+
     }//GEN-LAST:event_txtdonviFocusLost
 
     private void txtluongFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtluongFocusLost
-       String luong=txtluong.getText();
-       if(luong.equals("")){
-           JOptionPane.showMessageDialog(rootPane,"Lương không được để trống");
-       }
+   try {
+             long luong = Long.valueOf(txtluong.getText());
+            Locale localeEn = new Locale("vn", "VN");
+            NumberFormat en = NumberFormat.getInstance(localeEn);
+            String tiente = en.format(luong);
+            dinhdangtien t = new dinhdangtien(tiente);
+            txtluong.setText(t.dinhdangtien());
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_txtluongFocusLost
 
     private void txthocphiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txthocphiFocusLost
-       String hocphi=txthocphi.getText();
-       if(hocphi.equals("")){
-           JOptionPane.showMessageDialog(rootPane,"học phí không được để trống");
-       }
+        try {
+             long hocphi = Long.valueOf(txthocphi.getText());
+            Locale localeEn = new Locale("vn", "VN");
+            NumberFormat en = NumberFormat.getInstance(localeEn);
+            String tiente = en.format(hocphi);
+            dinhdangtien t = new dinhdangtien(tiente);
+            txthocphi.setText(t.dinhdangtien());
+        } catch (Exception e) {
+        }
+           
     }//GEN-LAST:event_txthocphiFocusLost
 
     /**
@@ -435,15 +684,14 @@ public class from extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(from.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-   
         java.awt.EventQueue.invokeLater(new Runnable() {
-           
             public void run() {
-              
+
                 new from().setVisible(true);
                 Component center = null;
-              new from().setLocationRelativeTo(center);
+                new from().setLocationRelativeTo(center);
             }
         });
     }
@@ -462,6 +710,9 @@ public class from extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lbloihocphi;
+    private javax.swing.JLabel lbloihoten;
+    private javax.swing.JLabel lbloimasv;
     private javax.swing.JRadioButton rdsvhttt;
     private javax.swing.JRadioButton rdsvmm;
     private javax.swing.JTextField txtHoten;

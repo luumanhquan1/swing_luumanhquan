@@ -34,7 +34,7 @@ public class PerSon {
 
     @Override
     public String toString() {
-        return hoten + "-" + ngaysinh + "-" + diachi + "-" + gioitinh;
+        return hoten + "$" + ngaysinh + "$" + diachi + "$" + gioitinh;
     }
 
     public String xuat(){

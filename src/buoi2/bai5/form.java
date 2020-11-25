@@ -220,7 +220,8 @@ public class form extends javax.swing.JFrame {
         txthoten.setText("");
         txtdiachi.setText("");
         txtmagv.setText("");
-        
+        cbgioitinh.setSelectedIndex(0);
+        cbkhoa.setSelectedIndex(0);
     }//GEN-LAST:event_btnclearActionPerformed
 
     /**

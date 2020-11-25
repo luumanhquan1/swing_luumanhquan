@@ -5,6 +5,7 @@
  */
 package buoi2.bai3;
 
+import buoi2.bai4.thisinhA;
 import java.io.FileNotFoundException;
 
 /**
@@ -15,8 +16,10 @@ public class main {
     public static void main(String[] args) throws FileNotFoundException {
         quanly t=new quanly();
         t.nhapNV();
-    t.luufile();
-   t.docfile();
-          
+        t.luufile();
+        t.docfile();
+       NewJFrame t1=new NewJFrame();
+       t1.setVisible(true);
+       t1.setLocationRelativeTo(null);
     }
 }

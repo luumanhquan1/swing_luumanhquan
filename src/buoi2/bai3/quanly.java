@@ -60,7 +60,7 @@ public class quanly {
             }
             int i=0;
            String s1=word;
-                String[] words=s1.split("-");
+                String[] words=s1.split("\\$");
                for(String w:words){
                    if(i==1){
                        break;

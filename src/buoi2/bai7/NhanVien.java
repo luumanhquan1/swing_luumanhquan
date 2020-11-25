@@ -5,6 +5,8 @@
  */
 package buoi2.bai7;
 
+import java.util.Date;
+
 /**
  *
  * @author ASUS TUF
@@ -15,13 +17,15 @@ public class NhanVien extends PerSon{
     private double thamlien;
     private double luongcoban;
 
-    public NhanVien(String phongban, double hesoban, double thamlien, double luongcoban, String hoten, String ngaysinh, String diachi, String gioitinh) {
+    public NhanVien(String phongban, double hesoban, double thamlien, double luongcoban, String hoten, Date ngaysinh, String diachi, String gioitinh) {
         super(hoten, ngaysinh, diachi, gioitinh);
         this.phongban = phongban;
         this.hesoban = hesoban;
         this.thamlien = thamlien;
         this.luongcoban = luongcoban;
     }
+
+  
 
     public NhanVien(double hesoban, double thamlien, double luongcoban) {
         this.hesoban = hesoban;

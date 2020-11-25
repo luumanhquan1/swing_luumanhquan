@@ -25,7 +25,7 @@ public double luongthuclinh(){
 }
     @Override
     public String toString() {
-        return  super.toString()+ "-" + phongban + "-" + hesoban + "-" + thamlien + "-" + luongcoban+ "-" +luongthuclinh();
+        return  super.toString()+ "$" + phongban + "$" + hesoban + "$" + thamlien + "$" + luongcoban+ "$" +luongthuclinh();
     }
   
     @Override

@@ -324,6 +324,11 @@ public class from extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
+    
+    
     boolean kiemTraRong() {
         boolean kiemtrakitu;
         if (txtMasv.getText().equals("") == false) {
@@ -350,7 +355,7 @@ public class from extends javax.swing.JFrame {
             String hoten = txtHoten.getText();
             for (i = 0; i < hoten.length(); i++) {
                 char ch = hoten.charAt(i);
-                if ((ch >= 'A' && ch <= 'Z')) {
+                if ((ch >= 'A' && ch <= 'Z')||ch==' '||(ch >= 'a' && ch <= 'z')) {
                 } else {
                     message += "định dạng sai";
                     kiemtra++;
@@ -575,7 +580,7 @@ public class from extends javax.swing.JFrame {
                 String kiemtra = "\\w+";
                 String masv = txtMasv.getText();
                 flag = masv.matches(kiemtra);
-                if (masv.contains("AT")) {
+                if (masv.contains("AT")||masv.contains("at")) {
                     lbloimasv.setText(" ");
                     if (flag == false) {
                         lbloimasv.setText("viết liền,Không dấu,ký tự(AT******)");
@@ -585,7 +590,7 @@ public class from extends javax.swing.JFrame {
                 } else {
                     lbloimasv.setText("viết liền,Không dấu,ký tự(AT******)");
                 }
-
+                
             } catch (Exception e) {
             }
         }
@@ -598,13 +603,12 @@ public class from extends javax.swing.JFrame {
         if (txtHoten.getText().equals("") == false) {
             String hoten = txtHoten.getText();
             int i = 0;
-
             for (i = 0; i < hoten.length(); i++) {
                 char ch = hoten.charAt(i);
-                if ((ch >= 'A' && ch <= 'Z')) {
+                if ((ch >= 'A' && ch <= 'Z')||ch==' '||(ch >= 'a' && ch <= 'z')) {
                     lbloihoten.setText(" ");
                 } else {
-                    lbloihoten.setText("viết hoa,liền,không ký tự");
+                    lbloihoten.setText("không ký tự,không dấu");
                     break;
                 }
             }

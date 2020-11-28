@@ -642,9 +642,7 @@ public class from extends javax.swing.JFrame {
             dinhdangdiem t = new dinhdangdiem(Diem);
             txtdiem.setText(t.dinhdang());
         } catch (Exception e) {
-
         }
-
     }//GEN-LAST:event_txtdiemFocusLost
 
     private void txtdonviFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtdonviFocusLost

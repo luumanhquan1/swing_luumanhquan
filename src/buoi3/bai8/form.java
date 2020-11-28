@@ -5,6 +5,7 @@
  */
 package buoi3.bai8;
 
+import java.awt.Window;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +27,7 @@ public class form extends javax.swing.JFrame {
     /**
      * Creates new form form
      */
+    String message = "";
      ArrayList<String> dsList=new ArrayList<>();
     public form() {
         initComponents();
@@ -126,9 +129,27 @@ public class form extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public boolean kiemtraloi(){
+    String tienganh=txttanh.getText();
+    if(txttanh.getText().equals("")==false){
+        for(int i=0;i<tienganh.length();i++){
+            char ch=tienganh.charAt(i);
+         if((ch >='A' && ch <='Z')|| (ch>='a' && ch<='z')){   
+         }
+         else{
+             message +="không được nhập kí tự,số,dấu cách";
+             return false;
+         }
+        }
+    }
+    return true;
+}
     private void btndichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndichActionPerformed
+     boolean hople;
+     hople=kiemtraloi();
+     if(hople){
         String tienganh=txttanh.getText();
+        if(tienganh.isEmpty()==false){
         Dictionary t=new Dictionary(tienganh,"");
         txtnghia.setText(t.dich());
        if(txtnghia.getText().equals("")){
@@ -136,6 +157,12 @@ public class form extends javax.swing.JFrame {
            tg.setVisible(true);
            this.setVisible(false);
        }
+     }
+     }
+     else{
+         JOptionPane.showMessageDialog(this,message);
+         message="";
+     }
     }//GEN-LAST:event_btndichActionPerformed
 
     /**

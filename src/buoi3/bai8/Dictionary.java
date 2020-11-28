@@ -19,21 +19,15 @@ import javax.swing.JOptionPane;
 import javax.xml.transform.Source;
 
 public class Dictionary extends Word {
-
     private String tienganh;
-private  String nghia;
-
+     private  String nghia;
     public Dictionary(String tienganh, String nghia) {
         this.tienganh = tienganh;
         this.nghia = nghia;
     }
-   
-
     ArrayList<Word> dsList = new ArrayList<>();
-
     public Dictionary() {
     }
-
     public void sapxep() {
         Collections.sort(dsList, new Comparator<Word>() {
             public int compare(Word o1, Word o2) {
@@ -41,7 +35,6 @@ private  String nghia;
             }
         });
     }
-
     public void hien() {
         docfile();
         sapxep();
@@ -49,7 +42,6 @@ private  String nghia;
             tmp.xuat();
         }
     }
-
     public void docfile() {
         try {
             File file = new File("tudien.dat");
@@ -68,7 +60,6 @@ private  String nghia;
         } catch (Exception e) {
         }
     }
-
     public void luufile(){
         docfile();
         themtu();
@@ -80,7 +71,6 @@ private  String nghia;
         } catch (Exception e) {
         }
     }
-
     public String dich() {
         docfile();
         Map<String, String> dic = new HashMap<String, String>();

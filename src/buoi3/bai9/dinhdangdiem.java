@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package buoi3.bai1.batloi;
+package buoi3.bai9;
+
+import buoi3.bai1.batloi.*;
 
 public class dinhdangdiem {
 

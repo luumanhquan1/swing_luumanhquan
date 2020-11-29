@@ -5,6 +5,8 @@
  */
 package buoi3.bai8;
 
+import com.sun.xml.internal.bind.v2.Messages;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -25,7 +27,7 @@ public class themtudien extends javax.swing.JFrame {
         this.tienganh = tienganh;
         txtthemtanh.setText(tienganh);
     }
-
+   String messages="";
    
 
     /**
@@ -43,6 +45,7 @@ public class themtudien extends javax.swing.JFrame {
         txthemnghia = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnback = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +63,13 @@ public class themtudien extends javax.swing.JFrame {
         jLabel2.setText("tiếng anh:");
 
         jLabel3.setText("Tiếng viêt:");
+
+        btnback.setText("back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,8 +89,10 @@ public class themtudien extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(157, 157, 157)
+                .addGap(111, 111, 111)
                 .addComponent(btnsave)
+                .addGap(41, 41, 41)
+                .addComponent(btnback)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -97,23 +109,59 @@ public class themtudien extends javax.swing.JFrame {
                     .addComponent(txthemnghia, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                     .addComponent(txtthemtanh))
                 .addGap(23, 23, 23)
-                .addComponent(btnsave)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnsave)
+                    .addComponent(btnback))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public boolean kiemtrarong(){
+    if(txthemnghia.getText().isEmpty()){
+        messages+="không được để rỗng";
+        return false;
+    }
+    String nghia=txthemnghia.getText();
+    for(int i=0;i<nghia.length();i++){
+        char ch=nghia.charAt(i);
+        if((ch>='a'&& ch<='z')||(ch>='A'&&ch<='Z')||ch=='ă'||ch=='ằ'
+                ||ch=='ắ'||ch=='ặ'||ch=='â'||ch=='ầ'||ch=='ậ'||ch=='ấ'
+                ||ch=='đ'||ch=='ê'||ch=='ệ'||ch=='ề'||ch=='ế'
+                ||ch=='ô'||ch=='ồ'||ch=='ố'||ch=='ộ'
+                ||ch=='ơ'||ch=='ờ'||ch=='ớ'||ch=='ợ'
+                ||ch=='ư'||ch=='ừ'||ch=='ứ'||ch=='ự'||ch==' ')
+                {
+        }
+        else{
+            messages+="không được nhập kí tự";
+            return false;
+        }
+    }
+    return true;
+}
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
-     String tienganh=txtthemtanh.getText();
+    boolean hople=true;
+    hople=kiemtrarong();
+    if(hople){
+        String tienganh=txtthemtanh.getText();
      String nghia=txthemnghia.getText();
       Dictionary t=new Dictionary(tienganh, nghia);
-      
       t.luufile();
       this.setVisible(false);
       form manhinh=new form();
-      manhinh.setVisible(true);
+      manhinh.setVisible(true);}
+    else{
+        JOptionPane.showMessageDialog(this, messages);
+        messages="";
+    }
     }//GEN-LAST:event_btnsaveActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+       form t=new form();
+       t.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_btnbackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +199,7 @@ public class themtudien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnback;
     private javax.swing.JButton btnsave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -358,7 +358,13 @@ public class from extends javax.swing.JFrame {
             String hoten = txtHoten.getText();
             for (i = 0; i < hoten.length(); i++) {
                 char ch = hoten.charAt(i);
-                if ((ch >= 'A' && ch <= 'Z') || ch == ' ' || (ch >= 'a' && ch <= 'z')) {
+                if ((ch >= 'A' && ch <= 'Z') || ch == ' ' || (ch >= 'a' && ch <= 'z')
+                        ||ch=='ă'||ch=='ằ'
+                ||ch=='ắ'||ch=='ặ'||ch=='â'||ch=='ầ'||ch=='ậ'||ch=='ấ'
+                ||ch=='đ'||ch=='ê'||ch=='ệ'||ch=='ề'||ch=='ế'
+                ||ch=='ô'||ch=='ồ'||ch=='ố'||ch=='ộ'
+                ||ch=='ơ'||ch=='ờ'||ch=='ớ'||ch=='ợ'
+                ||ch=='ư'||ch=='ừ'||ch=='ứ'||ch=='ự'||ch=='ạ'||ch=='ã'||ch=='à'||ch=='á') {
                 } else {
                     message += "định dạng sai";
                     kiemtra++;
@@ -619,10 +625,17 @@ public class from extends javax.swing.JFrame {
             int i = 0;
             for (i = 0; i < hoten.length(); i++) {
                 char ch = hoten.charAt(i);
-                if ((ch >= 'A' && ch <= 'Z') || ch == ' ' || (ch >= 'a' && ch <= 'z')) {
+                if ((ch >= 'A' && ch <= 'Z') || ch == ' ' || (ch >= 'a' && ch <= 'z')
+                        ||ch=='ă'||ch=='ằ'
+                ||ch=='ắ'||ch=='ặ'||ch=='â'||ch=='ầ'||ch=='ậ'||ch=='ấ'
+                ||ch=='đ'||ch=='ê'||ch=='ệ'||ch=='ề'||ch=='ế'
+                ||ch=='ô'||ch=='ồ'||ch=='ố'||ch=='ộ'
+                ||ch=='ơ'||ch=='ờ'||ch=='ớ'||ch=='ợ'
+                ||ch=='ư'||ch=='ừ'||ch=='ứ'||ch=='ự'||ch=='ạ'||ch=='ã'||ch=='à'||ch=='á'
+                        ) {
                     lbloihoten.setText(" ");
                 } else {
-                    lbloihoten.setText("không ký tự,không dấu");
+                    lbloihoten.setText("tên không có ký tự");
                     break;
                 }
             }

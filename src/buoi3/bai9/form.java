@@ -181,7 +181,7 @@ public boolean kiemtra(){
             String values=txtvalue.getText();
             for(int i=0;i<values.length();i++){
                 char ch=values.charAt(i);
-                if( ch== ',' || ch==','){
+                if( ch== ',' || ch=='.'){
                     mess+="values phải là một số nguyên"
                             + "\n hoặc số không phải là chữ";
                     return false;
